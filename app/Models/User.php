@@ -45,4 +45,25 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // Relationships
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function visits()
+    {
+        return $this->hasMany(Visit::class);
+    }
+
+    // Role helpers
+    public function isAdmin(): bool
+    {
+        return $this->role && $this->role->name === \App\Models\Role::ADMIN;
+    }
+    public function isCommercial(): bool
+    {
+        return $this->role && $this->role->name === \App\Models\Role::COMMERCIAL;
+    }
 }
