@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\VisitController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth'])->group(function () {
+    Route::resource('clients', ClientController::class);
+    Route::resource('visits', VisitController::class);
+});
+
+require __DIR__ . '/auth.php';

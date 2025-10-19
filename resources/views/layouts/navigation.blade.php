@@ -3,19 +3,26 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+                <!-- Breadcrumbs -->
+                <nav class="flex items-center" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                        @if(request()->routeIs('clients.*'))
+                        <li class="inline-flex items-center">
+                            <a href="{{ route('clients.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                                <i class='bx bxs-user-detail mr-2'></i>
+                                Clients
+                            </a>
+                        </li>
+                        @elseif(request()->routeIs('visits.*'))
+                        <li class="inline-flex items-center">
+                            <a href="{{ route('visits.index') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
+                                <i class='bx bxs-calendar-event mr-2'></i>
+                                Visits
+                            </a>
+                        </li>
+                        @endif
+                    </ol>
+                </nav>
             </div>
 
             <!-- Settings Dropdown -->
@@ -43,7 +50,7 @@
                             @csrf
 
                             <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                                onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -89,8 +96,8 @@
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                        onclick="event.preventDefault();
+                        this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
