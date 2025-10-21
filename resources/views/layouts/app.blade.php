@@ -28,12 +28,14 @@
             <span class="text-xl font-bold text-blue-600 flex items-center gap-2">
                 <i class='bx bxs-dashboard text-2xl'></i> CRM_L12
             </span>
-            <button @click="sidebarOpen = !sidebarOpen" x-data="{ sidebarOpen: false }" x-on:click="sidebarOpen = !sidebarOpen" class="text-gray-500 focus:outline-none">
+            <button @click="sidebarOpen = !sidebarOpen" x-data="{ sidebarOpen: false }" x-on:click="sidebarOpen = !sidebarOpen"
+                class="text-gray-500 focus:outline-none">
                 <i class='bx bx-menu text-3xl'></i>
             </button>
         </div>
         <!-- Sidebar -->
-        <aside x-data="{ sidebarOpen: false }" :class="{'block': sidebarOpen, 'hidden': !sidebarOpen}" class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 flex flex-col py-6 px-4 space-y-4 md:static md:block md:translate-x-0 md:w-64 md:z-auto md:relative transition-transform duration-200 ease-in-out hidden md:flex">
+        <aside x-data="{ sidebarOpen: false }" :class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }"
+            class="fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 flex flex-col py-6 px-4 space-y-4 md:static md:block md:translate-x-0 md:w-64 md:z-auto md:relative transition-transform duration-200 ease-in-out hidden md:flex">
             <div class="flex items-center mb-8">
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-2 text-xl font-bold text-blue-600">
                     <i class='bx bxs-dashboard text-2xl'></i>
@@ -41,11 +43,13 @@
                 </a>
             </div>
             <nav class="flex flex-col gap-2">
-                <a href="{{ route('clients.index') }}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 @if(request()->routeIs('clients.*')) bg-blue-100 font-semibold @endif">
+                <a href="{{ route('clients.index') }}"
+                    class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 @if (request()->routeIs('clients.*')) bg-blue-100 font-semibold @endif">
                     <i class='bx bxs-user-detail text-xl'></i>
                     Clients
                 </a>
-                <a href="{{ route('visits.index') }}" class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 @if(request()->routeIs('visits.*')) bg-blue-100 font-semibold @endif">
+                <a href="{{ route('visits.index') }}"
+                    class="flex items-center gap-3 px-3 py-2 rounded hover:bg-blue-50 text-gray-700 @if (request()->routeIs('visits.*')) bg-blue-100 font-semibold @endif">
                     <i class='bx bxs-calendar-event text-xl'></i>
                     Visits
                 </a>
@@ -57,11 +61,11 @@
 
             <!-- Page Heading -->
             @isset($header)
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
             @endisset
 
             <!-- Page Content -->

@@ -14,8 +14,8 @@ class VisitController extends Controller
         $user = Auth::user();
 
         $visits = $user->isAdmin()
-            ? Visit::with('client', 'user')->get()
-            : $user->visits()->with('client')->get();
+            ? Visit::with('client', 'user', 'notes')->get()
+            : $user->visits()->with('client', 'notes')->get();
 
         $clients = Client::all();
 
